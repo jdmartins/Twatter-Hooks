@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const toReadableDate = timestamp => {
   const d = new Date(timestamp);
@@ -11,7 +10,7 @@ const toReadableDate = timestamp => {
   return formattedDate + ' ' + formattedTime;
 };
 
-const TimelineItem = ({ item, handleLike, handleRetweet }) => (
+const TimelineItem = ({ item, dispatch }) => (
   <div className="tweet">
     <div className="tweet--user">
       <img className="tweet--user-avatar" src={item.avatar} alt="" />
@@ -23,8 +22,14 @@ const TimelineItem = ({ item, handleLike, handleRetweet }) => (
     <div className="tweet--time">{toReadableDate(item.date)}</div>
 
     <div className="tweet--actions">
-      <i onClick={() => handleLike(item)} className={`fa fa-heart ${item.liked}`} />
-      <i onClick={() => handleRetweet(item)} className="fa fa-retweet" />
+      <i
+        onClick={() => dispatch({ type: 'TOGGLE_LIKE', payload: item })}
+        className={`fa fa-heart ${item.liked}`}
+      />
+      <i
+        onClick={() => dispatch({ type: 'INCREMENT_RETWEET', payload: item })}
+        className="fa fa-retweet"
+      />
       <span>{item.retweets} retweets</span>
     </div>
   </div>
