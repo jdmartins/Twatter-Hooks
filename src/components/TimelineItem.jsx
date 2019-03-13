@@ -23,11 +23,11 @@ const TimelineItem = ({ item, dispatch }) => (
 
     <div className="tweet--actions">
       <i
-        onClick={useCallback(() => dispatch({ type: 'TOGGLE_LIKE', payload: item }), [item])}
+        onClick={useCallback(() => dispatch({ type: 'TOGGLE_LIKE', payload: item }))}
         className={`fa fa-heart ${item.liked}`}
       />
       <i
-        onClick={useCallback(() => dispatch({ type: 'INCREMENT_RETWEET', payload: item }, [item]))}
+        onClick={useCallback(() => dispatch({ type: 'INCREMENT_RETWEET', payload: item }))}
         className="fa fa-retweet"
       />
       <span>{item.retweets} retweets</span>
